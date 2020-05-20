@@ -311,15 +311,15 @@
                         </a>
                     </div>
                     <div class="col-lg-4 col-sm-6">
-                        <a class="portfolio-box" href="img/portfolio/fullsize/4.jpg">
+                        <a class="portfolio-box portfolio-item" href="#portfolio-modal-4">
                             <img class="img-fluid" src="img/portfolio/thumbnails/dapp.png" alt="">
                             <div class="portfolio-box-caption">
                                 <div class="portfolio-box-caption-content">
                                     <div class="project-category text-faded">
-                                        Category
+                                        Blockchain
                                     </div>
                                     <div class="project-name">
-                                        Project Name
+                                        Decentralized Record Storage
                                     </div>
                                 </div>
                             </div>
@@ -654,6 +654,59 @@
                             </div>
                             <div class="col-12 col-sm-6 col-md-6 pull-right">
                                 <a class="btn btn-primary btn-lg rounded-pill" href="https://github.com/aditya30394/Spotlight-on-AWS-Elasticsearch" target="_blank">
+                                    Link To Project</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Portfolio Modal 4 -->
+    <div class="portfolio-modal mfp-hide" id="portfolio-modal-4">
+        <div class="portfolio-modal-dialog bg-white">
+            <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
+                <i class="fa fa-3x fa-times"></i>
+            </a>
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <h2 class="text-secondary text-uppercase mb-0">
+                            Decentralized Howdy: A decentralized application for student record storage</h2>
+                        <hr class="star-dark mb-5">
+                        <img class="img-fluid mb-5" src="img/portfolio/fullsize/dapp.png" alt="">
+                        <p class="mb-5">
+                            As students move from one learning environment to another, it is essential that they carry with them the proof of their previous learning experiences and achievements. In most cases, this is expressed in the form of grade cards or certificate of completion and as such, academic records and transcripts play a vital role in the lives of every student. The official records showing the courses taken and the respective grades earned are continuously sought by recruiters as well as graduate schools. These grade cards are used both by the academia and industry for enrollment and administrative decisions, but most importantly used for verifying the credentials. Traditionally, these records are mostly stored either as documents or as unofficial copies on centralized servers. While these may be sufficient for decision-making procedures, they bear a consequence of delaying the on-boarding process. This is because, to obtain an official copy, students are required to place an application with the academic department, and the whole process usually takes about 10 days. The delay is primarily caused because the records are validated at the source, which usually follows a convoluted process. The challenge is to offer a platform upon which all of a student’s credentials can be verified readily without actually approaching the source. This expedites the time to obtain the official records.
+                            <hr>
+                            <h2 id="approach-and-contribution">Approach and Contribution</h2>
+                            We propose to use the block-chain technology as the back end to solve the above-mentioned problem. The primary attraction of block-chain is that it offers immutable ledgers and we intend to leverage this property. The fact that block-chain data is tamper-proof provides it with built-in validation as an independent, transparent and permanent database. The aim of the project is to build a decentralized application for student record storage. A decentralized application (dapp for short) refers to an application that is executed by multiple users over a decentralized network.Bitcoin is the first generation of block-chain and the transactions involved currency. Ethereum can be seen as the next generation wherein it offers programmable transactions in the form of smart contracts. In this project, we use smart contracts to associate students with their official records and use the inherent properties of block-chain to make the records tamper proof. With this application, individuals can access their records from virtually any device. The records cannot be altered by students, but the application provides them with a control to exactly show what they want to various groups of people. We also designed a minimalisitc web-based interface which facilitates students to check their records and the department/registrar to add or modify the student records.
+                            <p>To summarize, our two important contributions are:
+                                <br>
+                                1. Provide a decentralized application to eliminate the delay in obtaining official records
+                                <br>
+                                2. Provide a mechanism to make the records tamper-proof so that they can be trusted
+                            </p>
+                            <hr>
+                            <h2 id="smart-contract">Smart Contract</h2>
+                            <p>Our smart contract has two map based data structures:</p>
+                            <ol style="list-style-type: decimal">
+                                <li>
+                                    <p><strong>studentRecords:</strong> This data structure maps the student IDs to their respective <code>data</code>. The data is another library structure (similar to struct in C language) containing hash of student record, their password and a boolean flag indicating if the record is valid or not. This field is required in Solidity because a mapping declaration creates a namespace in which all the keys exist and the values are initialized to 0 or false. As a result we don't have a direct way of finding if a key exists or not. We set this boolean flag to true when the department implants a new student record in the block chain.</p>
+                                </li>
+                                <li>
+                                    <p><strong>authList:</strong> This is another map that just maps the authentication IDs to a boolean flag. Solidity does not provides a <code>Set</code> data structure and the only other alternative for us was to use array to store the authentication IDs. However, iterating through arrays was increasing the gas usage. Therefore to increase the efficiency of lookup operation, we decided to use another map to store the IDs. Again, due to the reason explained above, we use a boolean flag to indicate the presence of valid ID. These IDs are setup when the web app gets started. This is done by a call to constructor in the smart contract.</p>
+                                </li>
+                            </ol>
+                        </p>
+                        <div class="row">
+                            <div class="col-12 col-sm-6 col-md-6 pull-left">
+                                <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#">
+                                    <i class="fa fa-close"></i>
+                                    Close Project
+                                </a>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-6 pull-right">
+                                <a class="btn btn-primary btn-lg rounded-pill" href="https://github.com/aditya30394/Decentralized-Howdy/blob/master/README.md" target="_blank">
                                     Link To Project</a>
                             </div>
                         </div>
