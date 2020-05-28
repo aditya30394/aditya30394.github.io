@@ -22,4 +22,14 @@ https://uicookies.com/free-bootstrap-resume-templates/
 https://uicookies.com/free-bootstrap-resume-templates/
 
 
-Image Resize : http://www.simpleimageresizer.com/
+Image Resize : https://picresize.com/en/results
+
+size:
+full is 1200 X 630
+thumbnail is 650 X 350
+
+What to put:
+https://medium.com/@cgroom/a-software-engineers-one-page-portfolio-4f85ab8a20d1
+https://www.chuckgroom.com/onepage-bio/
+
+readme.md to html for easy copy - https://cloudconvert.com/md-to-html
