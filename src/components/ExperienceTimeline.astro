@@ -11,9 +11,9 @@ const timelineEntries = await Promise.all(
 );
 ---
 
-<section id="experience" class="relative py-20 bg-gradient-to-br from-slate-50 via-white to-purple-50 overflow-hidden">
+<section id="experience" class="relative py-20 bg-gradient-to-br from-slate-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-purple-900/20 overflow-hidden transition-colors duration-300">
   <!-- Subtle animated background -->
-  <div class="absolute inset-0 opacity-5">
+  <div class="absolute inset-0 opacity-5 dark:opacity-10">
     <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <pattern id="timeline-pattern" width="80" height="80" patternUnits="userSpaceOnUse">
@@ -27,8 +27,8 @@ const timelineEntries = await Promise.all(
   </div>
   
   <!-- Floating accent shapes -->
-  <div class="absolute top-20 right-10 w-72 h-72 bg-blue-300/10 rounded-full blur-3xl"></div>
-  <div class="absolute bottom-20 left-10 w-72 h-72 bg-purple-300/10 rounded-full blur-3xl"></div>
+  <div class="absolute top-20 right-10 w-72 h-72 bg-blue-300/10 dark:bg-blue-500/5 rounded-full blur-3xl"></div>
+  <div class="absolute bottom-20 left-10 w-72 h-72 bg-purple-300/10 dark:bg-purple-500/5 rounded-full blur-3xl"></div>
   
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
     <div class="text-center mb-16">
@@ -38,7 +38,7 @@ const timelineEntries = await Promise.all(
     
     <div class="relative">
       <!-- Enhanced Timeline line with gradient -->
-      <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-blue-400 via-purple-400 to-pink-400 rounded-full shadow-lg"></div>
+      <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-blue-400 via-purple-400 to-pink-400 dark:from-blue-500 dark:via-purple-500 dark:to-pink-500 rounded-full shadow-lg"></div>
       
       {timelineEntries.map((entry, index) => {
         const isEven = index % 2 === 0;
@@ -48,7 +48,7 @@ const timelineEntries = await Promise.all(
           <div class={`relative mb-12 md:mb-20 ${isEven ? 'md:pr-1/2 md:text-right' : 'md:pl-1/2'}`}>
             <!-- Timeline dot with gradient -->
             <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 -translate-y-4">
-              <div class={`w-5 h-5 rounded-full ${isWork ? 'bg-gradient-to-br from-blue-500 to-purple-500' : 'bg-gradient-to-br from-purple-500 to-pink-500'} border-4 border-white shadow-xl animate-pulse`} style="animation-duration: 2s;"></div>
+              <div class={`w-5 h-5 rounded-full ${isWork ? 'bg-gradient-to-br from-blue-500 to-purple-500' : 'bg-gradient-to-br from-purple-500 to-pink-500'} border-4 border-white dark:border-gray-800 shadow-xl animate-pulse`} style="animation-duration: 2s;"></div>
               <div class={`absolute inset-0 w-5 h-5 rounded-full ${isWork ? 'bg-blue-400' : 'bg-pink-400'} opacity-50 blur-sm`}></div>
             </div>
             
@@ -57,29 +57,29 @@ const timelineEntries = await Promise.all(
                 <!-- Gradient glow on hover -->
                 <div class={`absolute -inset-0.5 bg-gradient-to-r ${isWork ? 'from-blue-400 to-purple-400' : 'from-purple-400 to-pink-400'} rounded-2xl opacity-0 group-hover:opacity-100 blur transition-all duration-500`}></div>
                 
-                <div class="relative bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-1">
+                <div class="relative bg-white dark:bg-gray-900 p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-1">
                   <div class="flex items-center gap-4 mb-4">
                     <img src={entry.data.logo} alt={entry.data.organization} class="w-16 h-16 rounded-full object-cover" />
                     <div class={isEven ? 'md:text-right flex-1' : 'flex-1'}>
-                      <h3 class="font-heading font-bold text-xl text-gray-900">{entry.data.title}</h3>
-                      <p class="text-primary-600 font-semibold">{entry.data.organization}</p>
+                      <h3 class="font-heading font-bold text-xl text-gray-900 dark:text-white">{entry.data.title}</h3>
+                      <p class="text-primary-600 dark:text-primary-400 font-semibold">{entry.data.organization}</p>
                     </div>
                   </div>
                   
-                  <div class="text-sm text-gray-500 mb-2">
+                  <div class="text-sm text-gray-500 dark:text-gray-400 mb-2">
                     {entry.data.startDate} - {entry.data.endDate || 'Present'}
                   </div>
                   
                   {entry.data.location && (
-                    <div class="text-sm text-gray-500 mb-4">📍 {entry.data.location}</div>
+                    <div class="text-sm text-gray-500 dark:text-gray-400 mb-4">📍 {entry.data.location}</div>
                   )}
                   
-                  <div class="text-gray-600 prose prose-sm">
+                  <div class="text-gray-600 dark:text-gray-300 prose prose-sm dark:prose-invert">
                     <entry.Content />
                   </div>
                   
                   <div class={`mt-4 inline-block px-3 py-1 text-xs font-medium rounded-full ${
-                    isWork ? 'bg-primary-100 text-primary-700' : 'bg-accent-100 text-accent-700'
+                    isWork ? 'bg-primary-100 text-primary-700 dark:bg-primary-900/30 dark:text-primary-300' : 'bg-accent-100 text-accent-700 dark:bg-accent-900/30 dark:text-accent-300'
                   }`}>
                     {isWork ? '💼 Work' : '🎓 Education'}
                   </div>
