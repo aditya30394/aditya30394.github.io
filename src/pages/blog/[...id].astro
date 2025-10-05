@@ -17,34 +17,90 @@ const { Content } = await post.render();
 ---
 
 <BaseLayout title={post.data.title} description={post.data.description}>
-  <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-    <header class="mb-12">
-      <a href="/blog" class="text-primary-600 hover:underline mb-4 inline-block">
-        ← Back to Blog
-      </a>
-      <h1 class="font-heading font-bold text-4xl sm:text-5xl text-gray-900 mb-4">
-        {post.data.title}
-      </h1>
-      <div class="text-gray-500 mb-4">
-        {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+  <div class="min-h-screen bg-gradient-to-br from-slate-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 transition-colors duration-300">
+    <article class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+      <!-- Back Button -->
+      <div class="mb-8">
+        <a 
+          href="/blog" 
+          class="inline-flex items-center gap-2 text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 font-medium transition-colors group"
+        >
+          <svg class="w-5 h-5 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+          </svg>
+          Back to Blog
+        </a>
       </div>
-      <div class="flex flex-wrap gap-2">
-        {post.data.tags.map((tag: string) => (
-          <span class="px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-sm">
-            {tag}
-          </span>
-        ))}
+
+      <!-- Article Header -->
+      <header class="mb-12 bg-white dark:bg-gray-800 rounded-3xl p-8 md:p-12 shadow-xl border border-gray-200 dark:border-gray-700">
+        <h1 class="font-heading font-bold text-4xl sm:text-5xl md:text-6xl text-gray-900 dark:text-white mb-6 leading-tight">
+          {post.data.title}
+        </h1>
+        
+        <div class="flex flex-wrap items-center gap-4 mb-6">
+          <div class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-primary-600 dark:text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+            </svg>
+            <span class="text-gray-700 dark:text-gray-300 font-medium">
+              {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+            </span>
+          </div>
+        </div>
+        
+        <div class="flex flex-wrap gap-2">
+          {post.data.tags.map((tag: string) => (
+            <span class="px-4 py-2 bg-gradient-to-r from-primary-100 to-purple-100 dark:from-primary-900/30 dark:to-purple-900/30 text-primary-700 dark:text-primary-300 rounded-full text-sm font-medium">
+              #{tag}
+            </span>
+          ))}
+        </div>
+      </header>
+      
+      <!-- Article Content -->
+      <div class="bg-white dark:bg-gray-800 rounded-3xl p-8 md:p-12 lg:p-16 shadow-xl border border-gray-200 dark:border-gray-700 mb-8">
+        <div class="prose prose-lg md:prose-xl max-w-none 
+          prose-headings:font-heading prose-headings:text-gray-900 dark:prose-headings:text-white
+          prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-p:leading-relaxed
+          prose-a:text-primary-600 dark:prose-a:text-primary-400 prose-a:no-underline hover:prose-a:underline
+          prose-strong:text-gray-900 dark:prose-strong:text-white
+          prose-code:text-primary-600 dark:prose-code:text-primary-400 prose-code:bg-primary-50 dark:prose-code:bg-primary-900/30 prose-code:px-2 prose-code:py-1 prose-code:rounded
+          prose-pre:bg-gray-900 dark:prose-pre:bg-gray-950 prose-pre:border prose-pre:border-gray-700
+          prose-blockquote:border-l-primary-600 prose-blockquote:bg-primary-50 dark:prose-blockquote:bg-primary-900/20 prose-blockquote:text-gray-700 dark:prose-blockquote:text-gray-300
+          prose-ul:text-gray-700 dark:prose-ul:text-gray-300
+          prose-ol:text-gray-700 dark:prose-ol:text-gray-300
+          prose-li:text-gray-700 dark:prose-li:text-gray-300
+          prose-hr:border-gray-300 dark:prose-hr:border-gray-600
+          prose-table:text-gray-700 dark:prose-table:text-gray-300
+          prose-th:bg-primary-50 dark:prose-th:bg-primary-900/30
+          prose-img:rounded-xl prose-img:shadow-lg
+          ">
+          <Content />
+        </div>
       </div>
-    </header>
-    
-    <div class="prose prose-lg max-w-none prose-headings:font-heading prose-a:text-primary-600 prose-a:no-underline hover:prose-a:underline">
-      <Content />
-    </div>
-    
-    <footer class="mt-16 pt-8 border-t border-gray-200">
-      <a href="/blog" class="text-primary-600 hover:underline">
-        ← Back to all posts
-      </a>
-    </footer>
-  </article>
+      
+      <!-- Footer Navigation -->
+      <footer class="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-xl border border-gray-200 dark:border-gray-700">
+        <div class="flex items-center justify-between">
+          <a 
+            href="/blog" 
+            class="inline-flex items-center gap-2 text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 font-semibold transition-colors group"
+          >
+            <svg class="w-5 h-5 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+            </svg>
+            Back to all posts
+          </a>
+          
+          <a 
+            href="/#blog" 
+            class="inline-flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 font-medium transition-colors"
+          >
+            Homepage
+          </a>
+        </div>
+      </footer>
+    </article>
+  </div>
 </BaseLayout>

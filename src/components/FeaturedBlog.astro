@@ -15,21 +15,23 @@ function formatDate(date: Date) {
 }
 ---
 
-<section id="blog" class="relative py-20 bg-white dark:bg-gray-800 overflow-hidden transition-colors duration-300">
-  <!-- Animated background -->
-  <div class="absolute inset-0 opacity-30 dark:opacity-20">
-    <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-cyan-50 via-blue-50 to-purple-50 dark:from-cyan-900/20 dark:via-blue-900/20 dark:to-purple-900/20"></div>
-    <div class="absolute top-20 -left-20 w-96 h-96 bg-cyan-300/20 dark:bg-cyan-500/10 rounded-full blur-3xl animate-pulse"></div>
-    <div class="absolute bottom-20 -right-20 w-96 h-96 bg-purple-300/20 dark:bg-purple-500/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 1.5s;"></div>
+<section id="blog" class="relative py-20 bg-gradient-to-br from-primary-600 via-purple-600 to-primary-700 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 overflow-hidden transition-colors duration-300">
+  <!-- Animated background pattern -->
+  <div class="absolute inset-0 opacity-10">
+    <div class="absolute inset-0" style="background-image: repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.1) 35px, rgba(255,255,255,.1) 70px);"></div>
   </div>
+  
+  <!-- Floating shapes -->
+  <div class="absolute top-20 left-10 w-72 h-72 bg-cyan-300/20 dark:bg-cyan-500/10 rounded-full blur-3xl animate-pulse"></div>
+  <div class="absolute bottom-20 right-10 w-96 h-96 bg-blue-300/20 dark:bg-blue-500/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 2s;"></div>
   
   <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-16">
-      <h2 class="font-heading font-bold text-5xl md:text-6xl bg-gradient-to-r from-cyan-600 via-blue-600 to-purple-600 bg-clip-text text-transparent mb-4 animate-fade-in-up">
+      <h2 class="font-heading font-bold text-5xl md:text-6xl text-white mb-4 animate-fade-in-up">
         Latest from the Blog
       </h2>
-      <div class="w-24 h-2 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 mx-auto rounded-full shadow-lg"></div>
-      <p class="mt-6 text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+      <div class="w-24 h-2 bg-cyan-300 mx-auto rounded-full shadow-lg"></div>
+      <p class="mt-6 text-xl text-white/90 max-w-2xl mx-auto">
         Thoughts on software engineering, cloud computing, and tech career insights
       </p>
     </div>
@@ -68,22 +70,25 @@ function formatDate(date: Date) {
           <!-- Gradient glow on hover -->
           <div class="absolute -inset-0.5 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 rounded-2xl opacity-0 group-hover:opacity-100 blur transition-all duration-500"></div>
           
-          <!-- Card -->
-          <div class="relative bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-100/50 dark:border-gray-700/50 group-hover:border-transparent h-full flex flex-col">
+          <!-- Entire Card as Link -->
+          <a 
+            href={`/blog/${post.id}`}
+            class="relative block bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 border border-white/50 dark:border-gray-700/50 group-hover:border-transparent h-full cursor-pointer transform group-hover:scale-105"
+          >
             <!-- Date Badge -->
             <div class="flex items-center gap-2 mb-4">
-              <div class="bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-4 py-1 rounded-full text-sm font-semibold">
+              <div class="bg-gradient-to-r from-cyan-400 to-blue-400 dark:from-cyan-500 dark:to-blue-500 text-white px-4 py-1 rounded-full text-sm font-semibold">
                 {formatDate(post.data.pubDate)}
               </div>
             </div>
             
             <!-- Title -->
-            <h3 class="font-heading text-2xl font-bold bg-gradient-to-r from-cyan-600 via-blue-600 to-purple-600 bg-clip-text text-transparent mb-3 group-hover:from-cyan-700 group-hover:via-blue-700 group-hover:to-purple-700 transition-all">
+            <h3 class="font-heading text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-all">
               {post.data.title}
             </h3>
             
             <!-- Description -->
-            <p class="text-gray-600 dark:text-gray-300 mb-6 line-clamp-3 flex-grow">
+            <p class="text-gray-700 dark:text-gray-300 mb-6 line-clamp-3">
               {post.data.description}
             </p>
             
@@ -91,24 +96,21 @@ function formatDate(date: Date) {
             {post.data.tags && post.data.tags.length > 0 && (
               <div class="flex flex-wrap gap-2 mb-6">
                 {post.data.tags.slice(0, 3).map(tag => (
-                  <span class="px-3 py-1 bg-gradient-to-r from-cyan-100 to-blue-100 dark:from-cyan-900/30 dark:to-blue-900/30 text-cyan-700 dark:text-cyan-300 rounded-full text-xs font-medium">
+                  <span class="px-3 py-1 bg-gradient-to-r from-cyan-100 to-blue-100 dark:from-cyan-900/40 dark:to-blue-900/40 text-cyan-700 dark:text-cyan-300 rounded-full text-xs font-medium">
                     #{tag}
                   </span>
                 ))}
               </div>
             )}
             
-            <!-- Read More Link -->
-            <a 
-              href={`/blog/${post.id}`}
-              class="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 font-semibold hover:text-purple-600 dark:hover:text-purple-400 transition-colors group/link mt-auto"
-            >
-              Read More
-              <svg class="w-5 h-5 group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <!-- Read More Indicator -->
+            <div class="inline-flex items-center gap-2 text-blue-600 dark:text-cyan-400 font-semibold group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+              Click to Read
+              <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
               </svg>
-            </a>
-          </div>
+            </div>
+          </a>
         </article>
       ))}
         </div>

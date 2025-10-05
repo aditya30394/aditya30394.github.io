@@ -139,12 +139,16 @@
       </a>
     </div>
     
-    <!-- Scroll indicator -->
-    <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-      <svg class="w-6 h-6 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <!-- Scroll indicator - clickable -->
+    <a 
+      href="#about" 
+      class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce cursor-pointer hover:text-white transition-colors"
+      aria-label="Scroll to About section"
+    >
+      <svg class="w-6 h-6 text-white/70 hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
       </svg>
-    </div>
+    </a>
   </div>
 </section>
 
