@@ -1,0 +1,70 @@
+---
+import { getCollection } from 'astro:content';
+
+const timelineEntries = await Promise.all(
+  (await getCollection('timeline'))
+    .sort((a, b) => a.data.order - b.data.order)
+    .map(async (entry) => ({
+      ...entry,
+      Content: (await entry.render()).Content,
+    }))
+);
+---
+
+<section id="experience" class="py-20 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="font-heading font-bold text-4xl text-gray-900 mb-4">My Journey</h2>
+      <div class="w-20 h-1 bg-primary-600 mx-auto"></div>
+    </div>
+    
+    <div class="relative">
+      <!-- Timeline line -->
+      <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-primary-200"></div>
+      
+      {timelineEntries.map((entry, index) => {
+        const isEven = index % 2 === 0;
+        const isWork = entry.data.type === 'work';
+        
+        return (
+          <div class={`relative mb-12 md:mb-20 ${isEven ? 'md:pr-1/2 md:text-right' : 'md:pl-1/2'}`}>
+            <!-- Timeline dot -->
+            <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 -translate-y-4">
+              <div class={`w-4 h-4 rounded-full ${isWork ? 'bg-primary-600' : 'bg-accent-600'} border-4 border-white shadow-lg`}></div>
+            </div>
+            
+            <div class={`md:w-5/12 ${isEven ? 'ml-auto' : ''}`}>
+              <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                <div class="flex items-center gap-4 mb-4">
+                  <img src={entry.data.logo} alt={entry.data.organization} class="w-16 h-16 rounded-full object-cover" />
+                  <div class={isEven ? 'md:text-right flex-1' : 'flex-1'}>
+                    <h3 class="font-heading font-bold text-xl text-gray-900">{entry.data.title}</h3>
+                    <p class="text-primary-600 font-semibold">{entry.data.organization}</p>
+                  </div>
+                </div>
+                
+                <div class="text-sm text-gray-500 mb-2">
+                  {entry.data.startDate} - {entry.data.endDate || 'Present'}
+                </div>
+                
+                {entry.data.location && (
+                  <div class="text-sm text-gray-500 mb-4">📍 {entry.data.location}</div>
+                )}
+                
+                <div class="text-gray-600 prose prose-sm">
+                  <entry.Content />
+                </div>
+                
+                <div class={`mt-4 inline-block px-3 py-1 text-xs font-medium rounded-full ${
+                  isWork ? 'bg-primary-100 text-primary-700' : 'bg-accent-100 text-accent-700'
+                }`}>
+                  {isWork ? '💼 Work' : '🎓 Education'}
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>

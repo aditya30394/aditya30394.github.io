@@ -1,0 +1,52 @@
+---
+import { getCollection } from 'astro:content';
+import ProjectCard from './ProjectCard.astro';
+
+const featuredProjects = (await getCollection('projects'))
+  .filter(project => project.data.featured)
+  .sort((a, b) => (a.data.order || 0) - (b.data.order || 0))
+  .slice(0, 3);
+---
+
+<section id="projects" class="py-20 bg-gradient-to-br from-gray-50 to-white">
+  <div class="container mx-auto px-6">
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <h2 class="font-heading text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+        Featured Projects
+      </h2>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        A showcase of my technical work spanning machine learning, cloud computing, and software engineering
+      </p>
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+      {featuredProjects.map(project => (
+        <ProjectCard
+          title={project.data.title}
+          category={project.data.category}
+          description={project.data.description}
+          thumbnail={project.data.thumbnail}
+          tags={project.data.tags}
+          githubUrl={project.data.githubUrl}
+          externalUrl={project.data.externalUrl}
+          slug={project.id}
+        />
+      ))}
+    </div>
+
+    <!-- View All Projects CTA -->
+    <div class="text-center">
+      <a 
+        href="/projects" 
+        class="inline-flex items-center gap-2 px-8 py-4 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors shadow-lg hover:shadow-xl"
+      >
+        View All Projects
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
