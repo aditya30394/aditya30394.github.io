@@ -2,13 +2,11 @@
 import { getCollection } from 'astro:content';
 import ProjectCard from './ProjectCard.astro';
 
-const featuredProjects = (await getCollection('projects'))
-  .filter(project => project.data.featured)
-  .sort((a, b) => (a.data.order || 0) - (b.data.order || 0))
-  .slice(0, 3);
+const allProjects = (await getCollection('projects'))
+  .sort((a, b) => (a.data.order || 0) - (b.data.order || 0));
 ---
 
-<section id="projects" class="relative py-20 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 overflow-hidden">
+<section id="projects" class="relative py-20 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 dark:from-black dark:via-purple-950 dark:to-black overflow-hidden transition-colors duration-300">
   <!-- Modern tech-inspired background -->
   <div class="absolute inset-0 opacity-10">
     <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
@@ -32,29 +30,77 @@ const featuredProjects = (await getCollection('projects'))
       <h2 class="font-heading text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent mb-4">
         Featured Projects
       </h2>
-      <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+      <p class="text-xl text-gray-300 dark:text-gray-400 max-w-3xl mx-auto">
         A showcase of my technical work spanning machine learning, cloud computing, and software engineering
       </p>
     </div>
 
-    <!-- Projects Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-      {featuredProjects.map(project => (
-        <ProjectCard
-          title={project.data.title}
-          category={project.data.category}
-          description={project.data.description}
-          thumbnail={project.data.thumbnail}
-          tags={project.data.tags}
-          githubUrl={project.data.githubUrl}
-          externalUrl={project.data.externalUrl}
-          slug={project.id}
-        />
-      ))}
+    <!-- Projects Carousel -->
+    <div class="relative max-w-7xl mx-auto">
+      <!-- Navigation Arrows -->
+      <button 
+        id="prevProject" 
+        class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-12 z-20 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white p-4 rounded-full shadow-2xl hover:shadow-purple-500/50 transition-all transform hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed"
+        aria-label="Previous project"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+        </svg>
+      </button>
+      
+      <button 
+        id="nextProject" 
+        class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 z-20 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white p-4 rounded-full shadow-2xl hover:shadow-pink-500/50 transition-all transform hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed"
+        aria-label="Next project"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+        </svg>
+      </button>
+
+      <!-- Carousel Container -->
+      <div class="overflow-hidden">
+        <div id="projectsCarousel" class="flex transition-transform duration-500 ease-out">
+          {allProjects.map(project => (
+            <div class="w-full md:w-1/2 lg:w-1/3 flex-shrink-0 px-2 md:px-4">
+              <ProjectCard
+                title={project.data.title}
+                category={project.data.category}
+                description={project.data.description}
+                thumbnail={project.data.thumbnail}
+                tags={project.data.tags}
+                githubUrl={project.data.githubUrl}
+                externalUrl={project.data.externalUrl}
+                slug={project.id}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Dots Indicator -->
+      <div class="flex justify-center gap-2 mt-8">
+        {allProjects.map((_, index) => (
+          <button
+            class="project-dot w-3 h-3 rounded-full bg-gray-500 hover:bg-purple-400 transition-all duration-300"
+            data-index={index}
+            aria-label={`Go to project ${index + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+
+    <!-- Project Counter -->
+    <div class="text-center mt-8">
+      <p class="text-gray-400">
+        <span id="currentProject" class="text-purple-400 font-bold text-xl">1</span>
+        <span class="text-gray-500 mx-2">/</span>
+        <span class="text-gray-400">{allProjects.length}</span>
+      </p>
     </div>
 
     <!-- View All Projects CTA -->
-    <div class="text-center">
+    <div class="text-center mt-12">
       <a 
         href="/projects" 
         class="group relative inline-flex items-center gap-2 px-10 py-5"
@@ -72,3 +118,143 @@ const featuredProjects = (await getCollection('projects'))
     </div>
   </div>
 </section>
+
+<!-- Carousel Script -->
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function() {
+    const carousel = document.getElementById('projectsCarousel');
+    const prevBtn = document.getElementById('prevProject');
+    const nextBtn = document.getElementById('nextProject');
+    const dots = document.querySelectorAll('.project-dot');
+    const currentProjectSpan = document.getElementById('currentProject');
+    
+    let currentIndex = 0;
+    const totalProjects = dots.length;
+    let itemsPerView = 1;
+
+    // Determine items per view based on screen size
+    function getItemsPerView() {
+      if (window.innerWidth >= 1024) {
+        return 3; // lg: 3 items
+      } else if (window.innerWidth >= 768) {
+        return 2; // md: 2 items
+      } else {
+        return 1; // mobile: 1 item
+      }
+    }
+
+    function updateCarousel() {
+      itemsPerView = getItemsPerView();
+      const slideWidth = 100 / itemsPerView;
+      
+      // Move carousel
+      carousel.style.transform = `translateX(-${currentIndex * slideWidth}%)`;
+      
+      // Calculate which projects are visible
+      const visibleStart = currentIndex;
+      const visibleEnd = Math.min(currentIndex + itemsPerView - 1, totalProjects - 1);
+      
+      // Update counter to show range
+      if (itemsPerView === 1) {
+        currentProjectSpan.textContent = currentIndex + 1;
+      } else {
+        currentProjectSpan.textContent = `${visibleStart + 1}-${visibleEnd + 1}`;
+      }
+      
+      // Update dots
+      dots.forEach((dot, index) => {
+        if (index >= visibleStart && index <= visibleEnd) {
+          dot.classList.remove('bg-gray-500');
+          dot.classList.add('bg-purple-400', 'scale-125');
+        } else {
+          dot.classList.remove('bg-purple-400', 'scale-125');
+          dot.classList.add('bg-gray-500');
+        }
+      });
+      
+      // Update button states
+      prevBtn.disabled = currentIndex === 0;
+      nextBtn.disabled = currentIndex >= totalProjects - itemsPerView;
+    }
+
+    // Previous button
+    prevBtn.addEventListener('click', () => {
+      if (currentIndex > 0) {
+        currentIndex--;
+        updateCarousel();
+      }
+    });
+
+    // Next button
+    nextBtn.addEventListener('click', () => {
+      if (currentIndex < totalProjects - itemsPerView) {
+        currentIndex++;
+        updateCarousel();
+      }
+    });
+
+    // Dot navigation
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        // Adjust index to not exceed boundaries
+        const maxIndex = totalProjects - itemsPerView;
+        currentIndex = Math.min(index, maxIndex);
+        updateCarousel();
+      });
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft' && currentIndex > 0) {
+        currentIndex--;
+        updateCarousel();
+      } else if (e.key === 'ArrowRight' && currentIndex < totalProjects - itemsPerView) {
+        currentIndex++;
+        updateCarousel();
+      }
+    });
+
+    // Touch/swipe support
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    carousel.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    });
+
+    carousel.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    });
+
+    function handleSwipe() {
+      if (touchStartX - touchEndX > 50 && currentIndex < totalProjects - itemsPerView) {
+        // Swipe left
+        currentIndex++;
+        updateCarousel();
+      } else if (touchEndX - touchStartX > 50 && currentIndex > 0) {
+        // Swipe right
+        currentIndex--;
+        updateCarousel();
+      }
+    }
+
+    // Handle window resize
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        const newItemsPerView = getItemsPerView();
+        if (newItemsPerView !== itemsPerView) {
+          // Adjust currentIndex if needed
+          currentIndex = Math.min(currentIndex, totalProjects - newItemsPerView);
+          currentIndex = Math.max(0, currentIndex);
+          updateCarousel();
+        }
+      }, 250);
+    });
+
+    // Initialize
+    updateCarousel();
+  });
+</script>
