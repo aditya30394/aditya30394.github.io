@@ -15,15 +15,18 @@ function formatDate(date: Date) {
 }
 ---
 
-<section id="blog" class="relative py-20 bg-gradient-to-br from-primary-600 via-purple-600 to-primary-700 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 overflow-hidden transition-colors duration-300">
+<section id="blog" class="relative py-24 bg-gradient-to-br from-indigo-900 via-purple-900 to-blue-900 dark:from-gray-900 dark:via-indigo-950 dark:to-gray-900 overflow-hidden transition-colors duration-300">
+  <!-- Gradient fade-in at top for smooth transition -->
+  <div class="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-blue-100/40 dark:from-gray-800/60 to-transparent pointer-events-none"></div>
+  
   <!-- Animated background pattern -->
   <div class="absolute inset-0 opacity-10">
     <div class="absolute inset-0" style="background-image: repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.1) 35px, rgba(255,255,255,.1) 70px);"></div>
   </div>
   
-  <!-- Floating shapes -->
-  <div class="absolute top-20 left-10 w-72 h-72 bg-cyan-300/20 dark:bg-cyan-500/10 rounded-full blur-3xl animate-pulse"></div>
-  <div class="absolute bottom-20 right-10 w-96 h-96 bg-blue-300/20 dark:bg-blue-500/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 2s;"></div>
+  <!-- Floating shapes with enhanced glow -->
+  <div class="absolute top-20 left-10 w-72 h-72 bg-cyan-400/20 dark:bg-cyan-500/15 rounded-full blur-3xl animate-pulse"></div>
+  <div class="absolute bottom-20 right-10 w-96 h-96 bg-purple-400/20 dark:bg-purple-500/15 rounded-full blur-3xl animate-pulse" style="animation-delay: 2s;"></div>
   
   <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-16">
