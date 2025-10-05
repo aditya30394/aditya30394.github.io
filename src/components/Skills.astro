@@ -1,71 +1,104 @@
 ---
 const skills = {
-  languages: ['C++', 'Java', 'C', 'Python', 'MySQL', 'Shell Scripting'],
-  cloud: ['DynamoDB', 'S3', 'Lambda', 'Elasticsearch', 'Azure'],
-  web: ['HTML', 'JavaScript', 'jQuery', 'PHP', 'CSS', 'React.js'],
-  tools: ['Git', 'GitHub', 'PyTorch', 'GNU Debugger', 'Lex', 'Yacc', 'Laravel']
+  languages: {
+    title: "Languages",
+    icon: "💻",
+    gradient: "from-blue-500 via-purple-500 to-pink-500",
+    bgGradient: "from-blue-500/10 to-purple-500/10",
+    items: ["C++ (Proficient)", "Java", "Python", "C", "MySQL", "Shell Scripting", "JavaScript", "TypeScript"]
+  },
+  cloud: {
+    title: "Cloud Services",
+    icon: "☁️",
+    gradient: "from-purple-500 via-pink-500 to-blue-500",
+    bgGradient: "from-purple-500/10 to-pink-500/10",
+    items: ["DynamoDB", "S3", "Lambda", "Elasticsearch", "Azure", "GitHub Codespaces"]
+  },
+  web: {
+    title: "Web Technologies",
+    icon: "🌐",
+    gradient: "from-pink-500 via-purple-500 to-blue-500",
+    bgGradient: "from-pink-500/10 to-purple-500/10",
+    items: ["HTML5", "CSS3", "JavaScript", "React", "jQuery", "PHP", "Astro", "Tailwind CSS"]
+  },
+  tools: {
+    title: "Tools & Frameworks",
+    icon: "🛠️",
+    gradient: "from-blue-600 via-purple-600 to-pink-600",
+    bgGradient: "from-blue-600/10 to-pink-600/10",
+    items: ["Git/GitHub", "PyTorch", "GNU Debugger", "Lex/Yacc", "Laravel", "VS Code"]
+  }
 };
 ---
 
-<section id="skills" class="py-20 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-12">
-      <h2 class="font-heading font-bold text-4xl text-gray-900 mb-4">Languages & Technologies</h2>
-      <div class="w-20 h-1 bg-primary-600 mx-auto"></div>
+<section id="skills" class="relative py-20 bg-white overflow-hidden">
+  <!-- Animated background -->
+  <div class="absolute inset-0 opacity-30">
+    <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50"></div>
+    <div class="absolute top-20 -left-20 w-96 h-96 bg-blue-300/20 rounded-full blur-3xl animate-pulse"></div>
+    <div class="absolute bottom-20 -right-20 w-96 h-96 bg-pink-300/20 rounded-full blur-3xl animate-pulse" style="animation-delay: 1.5s;"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-300/20 rounded-full blur-3xl animate-pulse" style="animation-delay: 3s;"></div>
+  </div>
+  
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="font-heading font-bold text-5xl md:text-6xl bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-4 animate-fade-in-up">
+        Languages & Technologies!
+      </h2>
+      <div class="w-24 h-2 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 mx-auto rounded-full shadow-lg"></div>
     </div>
     
-    <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
-      <div class="bg-gradient-to-br from-primary-50 to-white p-8 rounded-xl shadow-lg">
-        <h3 class="font-heading font-bold text-2xl text-primary-700 mb-6 flex items-center gap-2">
-          <span>💻</span> Programming Languages
-        </h3>
-        <div class="flex flex-wrap gap-2">
-          {skills.languages.map(skill => (
-            <span class="px-4 py-2 bg-white text-primary-700 rounded-full text-sm font-medium shadow-sm hover:shadow-md transition-shadow">
-              {skill}
-            </span>
-          ))}
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {Object.entries(skills).map(([key, category], index) => (
+        <div 
+          class="group relative animate-fade-in-up"
+          style={`animation-delay: ${(index + 1) * 200}ms`}
+        >
+          <!-- Gradient glow effect on hover -->
+          <div class={`absolute -inset-0.5 bg-gradient-to-r ${category.gradient} rounded-3xl opacity-0 group-hover:opacity-100 blur transition-all duration-500`}></div>
+          
+          <!-- Card -->
+          <div class="relative bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-100/50 group-hover:border-transparent">
+            <!-- Icon and Title -->
+            <div class="flex items-center gap-4 mb-6">
+              <div class={`text-5xl transform group-hover:scale-110 transition-transform duration-300`}>
+                {category.icon}
+              </div>
+              <h3 class={`font-heading font-bold text-2xl bg-gradient-to-r ${category.gradient} bg-clip-text text-transparent`}>
+                {category.title}
+              </h3>
+            </div>
+            
+            <!-- Skills -->
+            <div class="flex flex-wrap gap-3">
+              {category.items.map((skill) => (
+                <span class={`
+                  relative px-5 py-2.5 
+                  bg-gradient-to-r ${category.bgGradient}
+                  text-gray-800 rounded-full text-sm font-semibold
+                  border border-gray-200/50
+                  hover:border-transparent
+                  hover:shadow-lg
+                  transform hover:scale-110 hover:-translate-y-1
+                  transition-all duration-300
+                  cursor-default
+                  group/skill
+                `}>
+                  <span class={`absolute inset-0 rounded-full bg-gradient-to-r ${category.gradient} opacity-0 group-hover/skill:opacity-100 transition-opacity duration-300`}></span>
+                  <span class="relative group-hover/skill:text-white transition-colors duration-300">{skill}</span>
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
-      </div>
-      
-      <div class="bg-gradient-to-br from-accent-50 to-white p-8 rounded-xl shadow-lg">
-        <h3 class="font-heading font-bold text-2xl text-accent-700 mb-6 flex items-center gap-2">
-          <span>☁️</span> Cloud Services
-        </h3>
-        <div class="flex flex-wrap gap-2">
-          {skills.cloud.map(skill => (
-            <span class="px-4 py-2 bg-white text-accent-700 rounded-full text-sm font-medium shadow-sm hover:shadow-md transition-shadow">
-              {skill}
-            </span>
-          ))}
-        </div>
-      </div>
-      
-      <div class="bg-gradient-to-br from-primary-50 to-white p-8 rounded-xl shadow-lg">
-        <h3 class="font-heading font-bold text-2xl text-primary-700 mb-6 flex items-center gap-2">
-          <span>🌐</span> Web Technologies
-        </h3>
-        <div class="flex flex-wrap gap-2">
-          {skills.web.map(skill => (
-            <span class="px-4 py-2 bg-white text-primary-700 rounded-full text-sm font-medium shadow-sm hover:shadow-md transition-shadow">
-              {skill}
-            </span>
-          ))}
-        </div>
-      </div>
-      
-      <div class="bg-gradient-to-br from-accent-50 to-white p-8 rounded-xl shadow-lg">
-        <h3 class="font-heading font-bold text-2xl text-accent-700 mb-6 flex items-center gap-2">
-          <span>🛠️</span> Tools & Frameworks
-        </h3>
-        <div class="flex flex-wrap gap-2">
-          {skills.tools.map(skill => (
-            <span class="px-4 py-2 bg-white text-accent-700 rounded-full text-sm font-medium shadow-sm hover:shadow-md transition-shadow">
-              {skill}
-            </span>
-          ))}
-        </div>
-      </div>
+      ))}
+    </div>
+
+    <!-- Bottom decorative text -->
+    <div class="text-center mt-16">
+      <p class="text-gray-600 text-lg">
+        Constantly learning and exploring new technologies to stay at the cutting edge
+      </p>
     </div>
   </div>
 </section>

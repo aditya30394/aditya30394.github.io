@@ -11,16 +11,34 @@ const timelineEntries = await Promise.all(
 );
 ---
 
-<section id="experience" class="py-20 bg-gray-50">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<section id="experience" class="relative py-20 bg-gradient-to-br from-slate-50 via-white to-purple-50 overflow-hidden">
+  <!-- Subtle animated background -->
+  <div class="absolute inset-0 opacity-5">
+    <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="timeline-pattern" width="80" height="80" patternUnits="userSpaceOnUse">
+          <circle cx="40" cy="40" r="1" fill="rgba(147,51,234,0.3)"/>
+          <circle cx="0" cy="0" r="1" fill="rgba(59,130,246,0.3)"/>
+          <circle cx="80" cy="80" r="1" fill="rgba(236,72,153,0.3)"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#timeline-pattern)"/>
+    </svg>
+  </div>
+  
+  <!-- Floating accent shapes -->
+  <div class="absolute top-20 right-10 w-72 h-72 bg-blue-300/10 rounded-full blur-3xl"></div>
+  <div class="absolute bottom-20 left-10 w-72 h-72 bg-purple-300/10 rounded-full blur-3xl"></div>
+  
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
     <div class="text-center mb-16">
-      <h2 class="font-heading font-bold text-4xl text-gray-900 mb-4">My Journey</h2>
-      <div class="w-20 h-1 bg-primary-600 mx-auto"></div>
+      <h2 class="font-heading font-bold text-4xl md:text-5xl bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">My Journey</h2>
+      <div class="w-24 h-2 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 mx-auto rounded-full shadow-lg"></div>
     </div>
     
     <div class="relative">
-      <!-- Timeline line -->
-      <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-primary-200"></div>
+      <!-- Enhanced Timeline line with gradient -->
+      <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-blue-400 via-purple-400 to-pink-400 rounded-full shadow-lg"></div>
       
       {timelineEntries.map((entry, index) => {
         const isEven = index % 2 === 0;
@@ -28,37 +46,43 @@ const timelineEntries = await Promise.all(
         
         return (
           <div class={`relative mb-12 md:mb-20 ${isEven ? 'md:pr-1/2 md:text-right' : 'md:pl-1/2'}`}>
-            <!-- Timeline dot -->
+            <!-- Timeline dot with gradient -->
             <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 -translate-y-4">
-              <div class={`w-4 h-4 rounded-full ${isWork ? 'bg-primary-600' : 'bg-accent-600'} border-4 border-white shadow-lg`}></div>
+              <div class={`w-5 h-5 rounded-full ${isWork ? 'bg-gradient-to-br from-blue-500 to-purple-500' : 'bg-gradient-to-br from-purple-500 to-pink-500'} border-4 border-white shadow-xl animate-pulse`} style="animation-duration: 2s;"></div>
+              <div class={`absolute inset-0 w-5 h-5 rounded-full ${isWork ? 'bg-blue-400' : 'bg-pink-400'} opacity-50 blur-sm`}></div>
             </div>
             
             <div class={`md:w-5/12 ${isEven ? 'ml-auto' : ''}`}>
-              <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
-                <div class="flex items-center gap-4 mb-4">
-                  <img src={entry.data.logo} alt={entry.data.organization} class="w-16 h-16 rounded-full object-cover" />
-                  <div class={isEven ? 'md:text-right flex-1' : 'flex-1'}>
-                    <h3 class="font-heading font-bold text-xl text-gray-900">{entry.data.title}</h3>
-                    <p class="text-primary-600 font-semibold">{entry.data.organization}</p>
+              <div class="group relative">
+                <!-- Gradient glow on hover -->
+                <div class={`absolute -inset-0.5 bg-gradient-to-r ${isWork ? 'from-blue-400 to-purple-400' : 'from-purple-400 to-pink-400'} rounded-2xl opacity-0 group-hover:opacity-100 blur transition-all duration-500`}></div>
+                
+                <div class="relative bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-1">
+                  <div class="flex items-center gap-4 mb-4">
+                    <img src={entry.data.logo} alt={entry.data.organization} class="w-16 h-16 rounded-full object-cover" />
+                    <div class={isEven ? 'md:text-right flex-1' : 'flex-1'}>
+                      <h3 class="font-heading font-bold text-xl text-gray-900">{entry.data.title}</h3>
+                      <p class="text-primary-600 font-semibold">{entry.data.organization}</p>
+                    </div>
                   </div>
-                </div>
-                
-                <div class="text-sm text-gray-500 mb-2">
-                  {entry.data.startDate} - {entry.data.endDate || 'Present'}
-                </div>
-                
-                {entry.data.location && (
-                  <div class="text-sm text-gray-500 mb-4">📍 {entry.data.location}</div>
-                )}
-                
-                <div class="text-gray-600 prose prose-sm">
-                  <entry.Content />
-                </div>
-                
-                <div class={`mt-4 inline-block px-3 py-1 text-xs font-medium rounded-full ${
-                  isWork ? 'bg-primary-100 text-primary-700' : 'bg-accent-100 text-accent-700'
-                }`}>
-                  {isWork ? '💼 Work' : '🎓 Education'}
+                  
+                  <div class="text-sm text-gray-500 mb-2">
+                    {entry.data.startDate} - {entry.data.endDate || 'Present'}
+                  </div>
+                  
+                  {entry.data.location && (
+                    <div class="text-sm text-gray-500 mb-4">📍 {entry.data.location}</div>
+                  )}
+                  
+                  <div class="text-gray-600 prose prose-sm">
+                    <entry.Content />
+                  </div>
+                  
+                  <div class={`mt-4 inline-block px-3 py-1 text-xs font-medium rounded-full ${
+                    isWork ? 'bg-primary-100 text-primary-700' : 'bg-accent-100 text-accent-700'
+                  }`}>
+                    {isWork ? '💼 Work' : '🎓 Education'}
+                  </div>
                 </div>
               </div>
             </div>

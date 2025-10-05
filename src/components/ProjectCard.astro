@@ -13,69 +13,77 @@ interface Props {
 const { title, category, description, thumbnail, tags, githubUrl, externalUrl, slug } = Astro.props;
 ---
 
-<article class="group relative bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-  <!-- Thumbnail -->
-  <div class="relative h-64 overflow-hidden bg-gradient-to-br from-primary-100 to-accent-100">
-    <img 
-      src={thumbnail} 
-      alt={title}
-      class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-    />
-    <!-- Category Badge -->
-    <div class="absolute top-4 left-4">
-      <span class="px-3 py-1 bg-primary-600 text-white text-sm font-medium rounded-full">
-        {category}
-      </span>
-    </div>
-  </div>
-
-  <!-- Content -->
-  <div class="p-6">
-    <h3 class="font-heading text-xl font-bold text-gray-900 mb-3 line-clamp-2">
-      {title}
-    </h3>
-    
-    <p class="text-gray-600 mb-4 line-clamp-3">
-      {description}
-    </p>
-
-    <!-- Tags -->
-    <div class="flex flex-wrap gap-2 mb-4">
-      {tags.slice(0, 4).map(tag => (
-        <span class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded">
-          {tag}
+<article class="group relative h-full">
+  <!-- Gradient glow on hover -->
+  <div class="absolute -inset-0.5 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-2xl opacity-0 group-hover:opacity-100 blur transition-all duration-500"></div>
+  
+  <div class="relative h-full bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+    <!-- Thumbnail with gradient overlay -->
+    <div class="relative h-64 overflow-hidden bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-pink-500/20">
+      <img 
+        src={thumbnail} 
+        alt={title}
+        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+      />
+      <!-- Gradient overlay on hover -->
+      <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+      
+      <!-- Category Badge with gradient -->
+      <div class="absolute top-4 left-4">
+        <span class="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white text-sm font-bold rounded-full shadow-lg">
+          {category}
         </span>
-      ))}
+      </div>
     </div>
 
-    <!-- Links -->
-    <div class="flex gap-3 pt-4 border-t border-gray-200">
-      {githubUrl && (
-        <a 
-          href={githubUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="flex items-center gap-2 px-4 py-2 bg-gray-900 text-white text-sm font-medium rounded-lg hover:bg-gray-800 transition-colors"
-        >
-          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-          </svg>
-          GitHub
-        </a>
-      )}
-      {externalUrl && (
-        <a 
-          href={externalUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="flex items-center gap-2 px-4 py-2 bg-primary-600 text-white text-sm font-medium rounded-lg hover:bg-primary-700 transition-colors"
-        >
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
-          </svg>
-          View Project
-        </a>
-      )}
+    <!-- Content -->
+    <div class="p-6">
+      <h3 class="font-heading text-xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-3 line-clamp-2 group-hover:from-blue-700 group-hover:via-purple-700 group-hover:to-pink-700 transition-all">
+        {title}
+      </h3>
+      
+      <p class="text-gray-600 mb-4 line-clamp-3">
+        {description}
+      </p>
+
+      <!-- Tags with modern styling -->
+      <div class="flex flex-wrap gap-2 mb-4">
+        {tags.slice(0, 4).map(tag => (
+          <span class="px-3 py-1.5 bg-gradient-to-r from-blue-100 to-purple-100 text-gray-700 text-xs font-semibold rounded-full border border-blue-200/50 hover:border-purple-300 transition-colors">
+            {tag}
+          </span>
+        ))}
+      </div>
+
+      <!-- Links with modern gradient buttons -->
+      <div class="flex gap-3 pt-4 border-t border-gray-200">
+        {githubUrl && (
+          <a 
+            href={githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-gray-800 to-gray-900 text-white text-sm font-bold rounded-lg hover:from-gray-900 hover:to-black transition-all transform hover:scale-105 shadow-md hover:shadow-lg"
+          >
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
+            GitHub
+          </a>
+        )}
+        {externalUrl && (
+          <a 
+            href={externalUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-blue-500 to-purple-500 text-white text-sm font-bold rounded-lg hover:from-blue-600 hover:to-purple-600 transition-all transform hover:scale-105 shadow-md hover:shadow-lg"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+            </svg>
+            View
+          </a>
+        )}
+      </div>
     </div>
   </div>
 </article>
