@@ -27,7 +27,7 @@ const allProjects = (await getCollection('projects'))
   <div class="container mx-auto px-6 relative z-10">
     <!-- Section Header -->
     <div class="text-center mb-16">
-      <h2 class="font-heading text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent mb-4">
+      <h2 class="font-heading text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent mb-4">
         Featured Projects
       </h2>
       <p class="text-xl text-gray-300 dark:text-gray-400 max-w-3xl mx-auto">
@@ -50,7 +50,7 @@ const allProjects = (await getCollection('projects'))
       
       <button 
         id="nextProject" 
-        class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 z-20 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white p-4 rounded-full shadow-2xl hover:shadow-pink-500/50 transition-all transform hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed"
+        class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 z-20 bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white p-4 rounded-full shadow-2xl hover:shadow-indigo-500/50 transition-all transform hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed"
         aria-label="Next project"
       >
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -106,8 +106,8 @@ const allProjects = (await getCollection('projects'))
         class="group relative inline-flex items-center gap-2 px-10 py-5"
       >
         <!-- Animated gradient background -->
-        <div class="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full shadow-2xl group-hover:shadow-purple-500/50 transition-all"></div>
-        <div class="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full blur opacity-50 group-hover:opacity-75 transition-opacity"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-indigo-500 rounded-full shadow-2xl group-hover:shadow-purple-500/50 transition-all"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-indigo-500 rounded-full blur opacity-50 group-hover:opacity-75 transition-opacity"></div>
         
         <!-- Content -->
         <span class="relative text-white font-bold text-lg">View All Projects</span>
