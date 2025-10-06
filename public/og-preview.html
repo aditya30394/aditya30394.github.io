@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OG Image Preview</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      background: #f3f4f6;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    h1 {
+      color: #1f2937;
+      margin-bottom: 10px;
+    }
+    .info {
+      color: #6b7280;
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+    .preview {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    img {
+      width: 100%;
+      height: auto;
+      border: 1px solid #e5e7eb;
+      border-radius: 4px;
+    }
+    .specs {
+      margin-top: 20px;
+      padding: 15px;
+      background: #f9fafb;
+      border-radius: 4px;
+      font-size: 14px;
+      color: #374151;
+    }
+    .specs dt {
+      font-weight: 600;
+      display: inline;
+    }
+    .specs dd {
+      display: inline;
+      margin: 0 0 10px 0;
+    }
+    .actions {
+      margin-top: 20px;
+      display: flex;
+      gap: 10px;
+    }
+    .btn {
+      padding: 10px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 500;
+      display: inline-block;
+    }
+    .btn-primary {
+      background: #3b82f6;
+      color: white;
+    }
+    .btn-secondary {
+      background: #e5e7eb;
+      color: #374151;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Open Graph Image Preview</h1>
+    <div class="info">
+      This is how your portfolio will appear when shared on social media platforms like Facebook, Twitter, and LinkedIn.
+    </div>
+    
+    <div class="preview">
+      <img src="og-image.svg" alt="Open Graph Image">
+      
+      <dl class="specs">
+        <dt>Dimensions:</dt> <dd>1200 × 630 pixels</dd><br>
+        <dt>Format:</dt> <dd>SVG (convert to JPG recommended)</dd><br>
+        <dt>File:</dt> <dd>public/og-image.svg</dd><br>
+        <dt>Usage:</dt> <dd>Configured in BaseLayout.astro as /og-image.jpg</dd>
+      </dl>
+      
+      <div class="actions">
+        <a href="https://cloudconvert.com/svg-to-jpg" target="_blank" class="btn btn-primary">
+          Convert to JPG Online
+        </a>
+        <a href="og-image.svg" download class="btn btn-secondary">
+          Download SVG
+        </a>
+      </div>
+    </div>
+    
+    <div class="info" style="margin-top: 30px;">
+      <strong>Next Steps:</strong><br>
+      1. Convert SVG to JPG for best compatibility (use link above)<br>
+      2. Test with <a href="https://developers.facebook.com/tools/debug/" target="_blank">Facebook Debugger</a><br>
+      3. Verify with <a href="https://cards-dev.twitter.com/validator" target="_blank">Twitter Card Validator</a><br>
+      4. Customize by editing public/og-image.svg if needed
+    </div>
+  </div>
+</body>
+</html>
