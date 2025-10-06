@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 23">
+  <title>Microsoft Logo</title>
+  <!-- Red square -->
+  <rect x="0" y="0" width="11" height="11" fill="#F25022"/>
+  <!-- Green square -->
+  <rect x="12" y="0" width="11" height="11" fill="#7FBA00"/>
+  <!-- Blue square -->
+  <rect x="0" y="12" width="11" height="11" fill="#00A4EF"/>
+  <!-- Yellow square -->
+  <rect x="12" y="12" width="11" height="11" fill="#FFB900"/>
+</svg>

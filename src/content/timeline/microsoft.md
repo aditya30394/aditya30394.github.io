@@ -5,7 +5,7 @@ type: work
 startDate: "June 2020"
 endDate: "Present"
 location: Redmond, Washington
-logo: /images/microsoft.jpg
+logo: /images/microsoft-logo.svg
 order: 1
 ---
 

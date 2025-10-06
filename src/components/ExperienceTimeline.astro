@@ -59,7 +59,9 @@ const timelineEntries = await Promise.all(
                 
                 <div class="relative bg-white dark:bg-gray-900 p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-1">
                   <div class="flex items-center gap-4 mb-4">
-                    <img src={entry.data.logo} alt={entry.data.organization} class="w-16 h-16 rounded-full object-cover" />
+                    <div class="w-16 h-16 rounded-lg bg-white dark:bg-gray-800 p-2 flex items-center justify-center shadow-sm">
+                      <img src={entry.data.logo} alt={entry.data.organization} class="w-full h-full object-contain" />
+                    </div>
                     <div class={isEven ? 'md:text-right flex-1' : 'flex-1'}>
                       <h3 class="font-heading font-bold text-xl text-gray-900 dark:text-white">{entry.data.title}</h3>
                       <p class="text-primary-600 dark:text-primary-400 font-semibold">{entry.data.organization}</p>
