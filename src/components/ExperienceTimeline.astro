@@ -86,10 +86,9 @@ const timelineEntries = await Promise.all(
                         <span>{entry.data.startDate} - {entry.data.endDate || 'Present'}</span>
                       </div>
                       {entry.data.location && (
-                        <div class="flex items-center gap-1.5">
-                          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <div class="flex items-center gap-1.5 text-red-600 dark:text-red-400">
+                          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
                           </svg>
                           <span>{entry.data.location}</span>
                         </div>
@@ -99,12 +98,29 @@ const timelineEntries = await Promise.all(
                   
                   <!-- Content Section -->
                   <div class="px-6 py-5">
-                    <div class="text-gray-700 dark:text-gray-300 prose prose-sm dark:prose-invert max-w-none
-                      prose-headings:text-gray-900 prose-headings:dark:text-white prose-headings:font-bold prose-headings:text-base prose-headings:mt-4 prose-headings:mb-2 prose-headings:flex prose-headings:items-center prose-headings:gap-2
-                      prose-p:my-2 prose-p:leading-relaxed
-                      prose-ul:my-2 prose-ul:space-y-1.5
-                      prose-li:my-0 prose-li:text-sm
-                      prose-strong:text-primary-600 prose-strong:dark:text-primary-400 prose-strong:font-semibold">
+                    <style>
+                      .experience-content h2 {
+                        margin-top: 2rem !important;
+                        margin-bottom: 1rem !important;
+                      }
+                      .experience-content ul {
+                        list-style-type: disc !important;
+                        padding-left: 1.25rem !important;
+                        margin-top: 1rem !important;
+                        margin-bottom: 1rem !important;
+                      }
+                      .experience-content li {
+                        padding-left: 0.25rem !important;
+                        margin-bottom: 0.75rem !important;
+                      }
+                      .experience-content li::marker {
+                        color: #6366f1;
+                      }
+                    </style>
+                    <div class="experience-content text-gray-700 dark:text-gray-300 prose prose-sm dark:prose-invert max-w-none
+                      prose-headings:text-gray-900 prose-headings:dark:text-white prose-headings:font-bold prose-headings:text-base prose-headings:flex prose-headings:items-center prose-headings:gap-2 prose-headings:border-b prose-headings:border-gray-200 prose-headings:dark:border-gray-700 prose-headings:pb-2
+                      prose-p:my-4 prose-p:leading-relaxed prose-p:text-[15px]
+                      prose-strong:text-primary-600 prose-strong:dark:text-primary-400 prose-strong:font-bold">
                       <entry.Content />
                     </div>
                   </div>

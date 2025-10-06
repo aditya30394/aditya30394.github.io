@@ -9,9 +9,11 @@ logo: /images/microsoft-logo.svg
 order: 1
 ---
 
-As a Senior Software Engineer at Microsoft, I currently focus on the **Azure OpenAI Service**, building enterprise-grade AI solutions that bring together OpenAI's cutting-edge generative AI models (GPT-3.5, GPT-4, ChatGPT) with Azure's robust security, compliance, and responsible AI features.
+As a Senior Software Engineer at Microsoft, I currently focus on the **Azure OpenAI Service**, building enterprise-grade AI solutions that bring together OpenAI's cutting-edge generative AI models with Azure's robust security and compliance features.
 
-Previously, I contributed to **GitHub Codespaces**, building lightning-fast, cloud-based development environments. The same computing platform now powers AI-driven experiences like **GitHub Copilot Workspace**, enabling developers to brainstorm, plan, build, test, and run code in natural language.
+**Current Role:** Building scalable infrastructure for GPT-3.5, GPT-4, and ChatGPT deployments that enable businesses to harness large language models for text generation, code assistance, and transformative AI applications.
+
+**Previous Role:** Contributed to **GitHub Codespaces**, building lightning-fast, cloud-based development environments. The same computing platform now powers AI-driven experiences like **GitHub Copilot Workspace**.
 
 ## 🎯 Key Achievements
 

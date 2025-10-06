@@ -9,11 +9,14 @@ logo: /images/tamu.jpg
 order: 3
 ---
 
-Earned Master of Computer Science degree with a perfect 4.0 GPA while contributing to the academic community and building technical expertise.
+Earned Master of Computer Science degree with a perfect **4.0 GPA** while contributing to the academic community and building technical expertise.
 
-## 🎓 Highlights
+## 🎓 Academic Highlights
 
-- **GPA:** 4.0/4.0
+- **GPA:** 4.0/4.0 (Perfect Score)
 - Worked as Graduate Assistant in the Department of Information Technology
 - Served as Treasurer for Computer Science Graduate Student Association (CSEGSA)
-- **Key Coursework:** Cloud Computing, AI, Machine Learning, Information Retrieval, Natural Language Processing
+
+## 📚 Key Coursework
+
+Cloud Computing • Artificial Intelligence • Machine Learning • Information Retrieval • Natural Language Processing
