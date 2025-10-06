@@ -452,29 +452,27 @@ The site automatically deploys to GitHub Pages when you push to the `main` branc
 
 ### Open Graph Image
 
-Create an OG image for better social media sharing:
+An SVG-based OG image has been created at `public/og-image.svg` featuring:
+- Your name and title (Azure OpenAI Service)
+- Key technologies and specializations
+- Professional blue-purple gradient design
+- 1200x630px (Open Graph standard)
 
-1. Create a 1200x630px image with:
-   - Your name and title
-   - Key technologies or specialization
-   - Professional headshot (optional)
-   - Brand colors (blue/purple theme)
+**To convert SVG to JPG for optimal compatibility:**
+1. **Easiest**: Visit https://cloudconvert.com/svg-to-jpg and upload `public/og-image.svg`
+2. **Command line**: See `scripts/README-OG-IMAGE.md` for ImageMagick, Inkscape options
+3. **Manual**: Open SVG in browser, screenshot, save as JPG
 
-2. Save as `public/og-image.jpg`
+**To customize**: Edit `public/og-image.svg` to change colors, text, or layout.
 
-**Recommended Tools:**
-- Canva (has OG image templates)
-- Figma
-- Photoshop
-
-**Current Status**: ⚠️ Default OG image path configured but file doesn't exist yet
+**Current Status**: ✅ SVG created and ready. JPG conversion recommended for best social media compatibility.
 
 ## 🔮 Future Enhancements
 
 - [x] Dark mode toggle
 - [x] Blog carousel on homepage
 - [x] Project carousel with navigation
-- [ ] Create custom OG image for social sharing
+- [x] Create custom OG image for social sharing (SVG created)
 - [ ] Search functionality for blog posts
 - [ ] RSS feed for blog
 - [ ] Project filtering by category/tags

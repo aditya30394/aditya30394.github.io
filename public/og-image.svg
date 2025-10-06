@@ -1,0 +1,65 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#1e3a8a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#312e81;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="glow1" cx="70%" cy="30%" r="60%">
+      <stop offset="0%" style="stop-color:#6366f1;stop-opacity:0.6" />
+      <stop offset="100%" style="stop-color:#6366f1;stop-opacity:0" />
+    </radialGradient>
+    <radialGradient id="glow2" cx="30%" cy="70%" r="60%">
+      <stop offset="0%" style="stop-color:#0ea5e9;stop-opacity:0.5" />
+      <stop offset="100%" style="stop-color:#0ea5e9;stop-opacity:0" />
+    </radialGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow1)"/>
+  <rect width="1200" height="630" fill="url(#glow2)"/>
+  
+  <!-- Decorative circles -->
+  <circle cx="1050" cy="80" r="180" fill="#6366f1" opacity="0.12"/>
+  <circle cx="150" cy="550" r="220" fill="#0ea5e9" opacity="0.12"/>
+  
+  <!-- Content -->
+  <g transform="translate(100, 180)">
+    <!-- Name -->
+    <text x="0" y="0" font-family="'Sora', 'Arial Black', sans-serif" font-size="86" font-weight="700" fill="#ffffff" letter-spacing="1">
+      Aditya Kumar
+    </text>
+    
+    <!-- Accent bar -->
+    <rect x="0" y="30" width="560" height="10" rx="5" fill="url(#accent)"/>
+    
+    <!-- Role -->
+    <text x="0" y="105" font-family="'Inter', Arial, sans-serif" font-size="34" font-weight="500" fill="#bfdbfe">
+      Senior Software Engineer • Azure OpenAI Service
+    </text>
+    
+    <!-- Tech focus -->
+    <text x="0" y="165" font-family="'Inter', Arial, sans-serif" font-size="28" font-weight="400" fill="#e0e7ff">
+      Enterprise AI • Cloud • Distributed Systems
+    </text>
+    
+    <!-- Key technologies -->
+    <text x="0" y="210" font-family="'Inter', Arial, sans-serif" font-size="28" font-weight="400" fill="#e0e7ff">
+      C++ • Python • TypeScript • Kubernetes
+    </text>
+  </g>
+  
+  <!-- Microsoft logo placeholder (optional - simple representation) -->
+  <g transform="translate(950, 480)" opacity="0.3">
+    <rect width="40" height="40" fill="#f25022"/>
+    <rect x="50" width="40" height="40" fill="#7fba00"/>
+    <rect y="50" width="40" height="40" fill="#00a4ef"/>
+    <rect x="50" y="50" width="40" height="40" fill="#ffb900"/>
+  </g>
+</svg>
