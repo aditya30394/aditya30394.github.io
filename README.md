@@ -1,6 +1,6 @@
 # Aditya Kumar - Portfolio Website
 
-A modern, professional portfolio website built with Astro 5, Tailwind CSS, and TypeScript. Features a blog, project showcase, and timeline of professional experience.
+A modern, professional portfolio website built with Astro 4, Tailwind CSS, and TypeScript. Features a blog, project showcase, and timeline of professional experience.
 
 🚀 **Live Site**: [https://aditya30394.github.io](https://aditya30394.github.io)
 
@@ -10,15 +10,16 @@ A modern, professional portfolio website built with Astro 5, Tailwind CSS, and T
 - **Content Collections**: Type-safe content management for blog posts, projects, and timeline
 - **Responsive Design**: Mobile-first design that looks great on all devices
 - **SEO Optimized**: Proper meta tags, Open Graph, and Twitter Card support
-- **Blog System**: Full-featured blog with tags, draft support, and date sorting
-- **Project Showcase**: Categorized project cards with GitHub and external links
+- **Dark Mode**: Fully functional dark mode toggle with localStorage persistence
+- **Blog System**: Full-featured blog with tags, draft support, carousel display, and date sorting
+- **Project Showcase**: Categorized project cards with carousel navigation, GitHub and external links
 - **Experience Timeline**: Visual timeline of work experience and education
-- **Dark Mode Ready**: Architecture prepared for dark mode implementation
+- **Skills Section**: Comprehensive technical expertise showcase with categorized skills
 - **Easy Deployment**: Automated GitHub Pages deployment via GitHub Actions
 
 ## 🛠️ Tech Stack
 
-- **[Astro 5](https://astro.build)** - Static site generator
+- **[Astro 4](https://astro.build)** - Static site generator
 - **[Tailwind CSS](https://tailwindcss.com)** - Utility-first CSS framework
 - **[TypeScript](https://www.typescriptlang.org/)** - Type-safe development
 - **Content Collections** - Astro's Content Layer API for type-safe content
@@ -65,7 +66,7 @@ A modern, professional portfolio website built with Astro 5, Tailwind CSS, and T
 
 ### Prerequisites
 
-- Node.js 18.20.8 or higher
+- Node.js 18.19.1 or higher
 - npm, yarn, or pnpm
 
 ### Installation
@@ -447,9 +448,33 @@ The site automatically deploys to GitHub Pages when you push to the `main` branc
 - `npm run preview` - Preview production build locally
 - `npm run astro` - Run Astro CLI commands
 
+## 🎨 SEO & Social Media
+
+### Open Graph Image
+
+Create an OG image for better social media sharing:
+
+1. Create a 1200x630px image with:
+   - Your name and title
+   - Key technologies or specialization
+   - Professional headshot (optional)
+   - Brand colors (blue/purple theme)
+
+2. Save as `public/og-image.jpg`
+
+**Recommended Tools:**
+- Canva (has OG image templates)
+- Figma
+- Photoshop
+
+**Current Status**: ⚠️ Default OG image path configured but file doesn't exist yet
+
 ## 🔮 Future Enhancements
 
-- [ ] Dark mode toggle
+- [x] Dark mode toggle
+- [x] Blog carousel on homepage
+- [x] Project carousel with navigation
+- [ ] Create custom OG image for social sharing
 - [ ] Search functionality for blog posts
 - [ ] RSS feed for blog
 - [ ] Project filtering by category/tags
