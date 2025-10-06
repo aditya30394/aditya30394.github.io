@@ -45,7 +45,7 @@ const timelineEntries = await Promise.all(
         const isWork = entry.data.type === 'work';
         
         return (
-          <div class={`relative mb-12 md:mb-20 ${isEven ? 'md:pr-1/2 md:text-right' : 'md:pl-1/2'}`}>
+          <div class={`relative mb-12 md:mb-20 ${isEven ? 'md:pr-1/2' : 'md:pl-1/2'}`}>
             <!-- Timeline dot with gradient -->
             <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 -translate-y-4">
               <div class={`w-5 h-5 rounded-full ${isWork ? 'bg-gradient-to-br from-blue-500 to-purple-500' : 'bg-gradient-to-br from-purple-500 to-indigo-500'} border-4 border-white dark:border-gray-800 shadow-xl animate-pulse`} style="animation-duration: 2s;"></div>
@@ -102,23 +102,59 @@ const timelineEntries = await Promise.all(
                       .experience-content h2 {
                         margin-top: 2rem !important;
                         margin-bottom: 1rem !important;
+                        font-weight: 800 !important;
+                        font-size: 1.1rem !important;
+                        display: block !important;
+                      }
+                      /* Remove gradient from h2, we'll use JavaScript to wrap text only */
+                      .experience-content h2 {
+                        color: #1e40af !important;
                       }
                       .experience-content ul {
                         list-style-type: disc !important;
-                        padding-left: 1.25rem !important;
+                        padding-left: 1.5rem !important;
                         margin-top: 1rem !important;
                         margin-bottom: 1rem !important;
                       }
                       .experience-content li {
-                        padding-left: 0.25rem !important;
+                        padding-left: 0.125rem !important;
                         margin-bottom: 0.75rem !important;
                       }
                       .experience-content li::marker {
                         color: #6366f1;
+                        font-size: 1.1em;
+                      }
+                      /* Style for gradient text spans that will be added via JS */
+                      .experience-content h2 .gradient-text {
+                        background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                        background-clip: text;
+                        font-weight: 800;
+                      }
+                      .experience-content h2 .emoji {
+                        font-size: 1.3em;
+                        margin-right: 0.5rem;
+                        display: inline-block;
                       }
                     </style>
+                    <script>
+                      // Wrap text in gradient span, keep emoji separate
+                      document.addEventListener('DOMContentLoaded', () => {
+                        document.querySelectorAll('.experience-content h2').forEach(h2 => {
+                          const text = h2.textContent;
+                          // Match emoji at start (target common emojis)
+                          const emojiMatch = text.match(/^([\u{1F300}-\u{1F9FF}][\u{FE00}-\u{FE0F}]?|[\u{2600}-\u{26FF}][\u{FE00}-\u{FE0F}]?)\s*/u);
+                          if (emojiMatch) {
+                            const emoji = emojiMatch[0].trim();
+                            const restText = text.slice(emojiMatch[0].length).trim();
+                            h2.innerHTML = `<span class="emoji">${emoji}</span> <span class="gradient-text">${restText}</span>`;
+                          }
+                        });
+                      });
+                    </script>
                     <div class="experience-content text-gray-700 dark:text-gray-300 prose prose-sm dark:prose-invert max-w-none
-                      prose-headings:text-gray-900 prose-headings:dark:text-white prose-headings:font-bold prose-headings:text-base prose-headings:flex prose-headings:items-center prose-headings:gap-2 prose-headings:border-b prose-headings:border-gray-200 prose-headings:dark:border-gray-700 prose-headings:pb-2
+                      prose-headings:flex prose-headings:items-center prose-headings:gap-2 prose-headings:border-b prose-headings:border-gray-200 prose-headings:dark:border-gray-700 prose-headings:pb-2
                       prose-p:my-4 prose-p:leading-relaxed prose-p:text-[15px]
                       prose-strong:text-primary-600 prose-strong:dark:text-primary-400 prose-strong:font-bold">
                       <entry.Content />
