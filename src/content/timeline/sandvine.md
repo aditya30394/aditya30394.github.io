@@ -11,8 +11,8 @@ order: 4
 
 Developed high-performance network traffic management systems using C++, focusing on automation and efficiency improvements.
 
-## Key Contributions
+## 🎯 Key Contributions
 
 - Automated parameter calibration in fuzzy control system by developing a service in C++ capable of monitoring network traffic over 100,000 locations
-- Designed REST APIs for traffic shapers in C++ enabling dynamic policy enforcements without system reloads, saving 9 hours (average) of maintenance time per month
-- Developed hash map and timers-based internet traffic classification mechanism in C++ improving identification of applications that rely on third-party services by 90% (on average)
+- Designed REST APIs for traffic shapers enabling dynamic policy enforcements without system reloads, saving 9 hours of maintenance time per month
+- Developed hash map and timers-based internet traffic classification mechanism improving identification of applications that rely on third-party services by 90%
